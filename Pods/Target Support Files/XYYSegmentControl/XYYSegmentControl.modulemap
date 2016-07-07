@@ -1,0 +1,6 @@
+framework module XYYSegmentControl {
+  umbrella header "XYYSegmentControl-umbrella.h"
+
+  export *
+  module * { export * }
+}

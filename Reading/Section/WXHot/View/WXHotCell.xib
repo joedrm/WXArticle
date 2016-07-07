@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="WXHotReuseIdentifier" rowHeight="120" id="KGk-i7-Jjw" customClass="WXHotCell" customModule="Reading" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="99.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="s4d-oA-mxB" userLabel="配图">
+                        <rect key="frame" x="10" y="10" width="111.5" height="79.5"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="s4d-oA-mxB" secondAttribute="height" multiplier="14:10" id="24D-SV-XiH"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eHj-TK-UJc" userLabel="标题">
+                        <rect key="frame" x="131" y="10" width="178.5" height="54.5"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="18" id="JZF-f3-sTS"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="JZF-f3-sTS"/>
+                            </mask>
+                        </variation>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2hZ-Tq-une" userLabel="内容">
+                        <rect key="frame" x="131" y="69" width="28.5" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="H5T-ML-Zfu"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                        <color key="textColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ebX-kr-dVb" userLabel="内容">
+                        <rect key="frame" x="282.5" y="69" width="26.5" height="20"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                        <color key="textColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="2hZ-Tq-une" secondAttribute="trailing" constant="10" id="5uo-ma-Rn7"/>
+                    <constraint firstItem="eHj-TK-UJc" firstAttribute="top" secondItem="s4d-oA-mxB" secondAttribute="top" id="8Co-to-Qnm"/>
+                    <constraint firstAttribute="bottom" secondItem="s4d-oA-mxB" secondAttribute="bottom" constant="10" id="Dlk-DE-DNc"/>
+                    <constraint firstItem="2hZ-Tq-une" firstAttribute="bottom" secondItem="s4d-oA-mxB" secondAttribute="bottom" id="J3e-gC-d4v"/>
+                    <constraint firstAttribute="trailing" secondItem="eHj-TK-UJc" secondAttribute="trailing" constant="10" id="M4Z-C1-9eX"/>
+                    <constraint firstItem="2hZ-Tq-une" firstAttribute="leading" secondItem="s4d-oA-mxB" secondAttribute="trailing" constant="10" id="V1u-Sx-aMV"/>
+                    <constraint firstItem="ebX-kr-dVb" firstAttribute="height" secondItem="2hZ-Tq-une" secondAttribute="height" id="WW7-Zw-l2P"/>
+                    <constraint firstItem="2hZ-Tq-une" firstAttribute="top" secondItem="eHj-TK-UJc" secondAttribute="bottom" constant="5" id="Woi-gh-MeY"/>
+                    <constraint firstItem="s4d-oA-mxB" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="afz-LC-LHm"/>
+                    <constraint firstItem="ebX-kr-dVb" firstAttribute="trailing" secondItem="eHj-TK-UJc" secondAttribute="trailing" id="bhs-qG-URn"/>
+                    <constraint firstItem="2hZ-Tq-une" firstAttribute="top" secondItem="eHj-TK-UJc" secondAttribute="bottom" constant="5" id="dcL-Ow-FYI"/>
+                    <constraint firstItem="s4d-oA-mxB" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="p3u-oc-SAT"/>
+                    <constraint firstItem="eHj-TK-UJc" firstAttribute="leading" secondItem="s4d-oA-mxB" secondAttribute="trailing" constant="10" id="sQK-m8-9HF"/>
+                    <constraint firstItem="ebX-kr-dVb" firstAttribute="top" secondItem="2hZ-Tq-une" secondAttribute="top" id="uN5-a6-q4n"/>
+                    <constraint firstAttribute="bottom" secondItem="2hZ-Tq-une" secondAttribute="bottom" constant="5" id="x0E-kJ-t69"/>
+                </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="5uo-ma-Rn7"/>
+                        <exclude reference="dcL-Ow-FYI"/>
+                        <exclude reference="x0E-kJ-t69"/>
+                    </mask>
+                </variation>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="contentLabelView" destination="2hZ-Tq-une" id="JVC-k7-F5U"/>
+                <outlet property="picImageView" destination="s4d-oA-mxB" id="AOX-dU-aJL"/>
+                <outlet property="timeLabel" destination="ebX-kr-dVb" id="AQi-AN-ovm"/>
+                <outlet property="titleLabelView" destination="eHj-TK-UJc" id="I2L-Dh-z8f"/>
+            </connections>
+            <point key="canvasLocation" x="424" y="250"/>
+        </tableViewCell>
+    </objects>
+</document>

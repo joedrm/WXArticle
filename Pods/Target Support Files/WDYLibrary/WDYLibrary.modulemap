@@ -1,0 +1,6 @@
+framework module WDYLibrary {
+  umbrella header "WDYLibrary-umbrella.h"
+
+  export *
+  module * { export * }
+}
