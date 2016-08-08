@@ -63,9 +63,52 @@
 + (UIColor *)randomColor;
 + (UIColor *)colorWithString:(NSString *)stringToConvert;
 + (UIColor *)colorWithRGBHex:(UInt32)hex;
+/** 传入一个十六进制颜色字符串，转换为相应的颜色。（不带"#"号） */ 
 + (UIColor *)colorWithHexString:(NSString *)stringToConvert;
 + (UIColor *)colorWithHexString:(NSString *)stringToConvert andAlpha:(CGFloat)alpha;
 + (UIColor *)colorWithName:(NSString *)cssColorName;
+
+// ------ 经常用到的颜色
+/*
+ *  烟白色(F5F5F5)
+ */
++ (UIColor *)smokeWhiteColor;
+
+/*
+ *  黄绿色(9ACD32)
+ */
++ (UIColor *)yellowGreenColor;
+
+/*
+ *  艾利斯兰(F0F8FF)
+ */
++ (UIColor *)aliceBlueColor;
+
+/*
+ *  古董白(FAEBD7)
+ */
++ (UIColor *)antiqueWhiteColor;
+
+/*
+ *  碧绿色(7FFFD4)
+ */
++ (UIColor *)aquaMarineColor;
+
+/*
+ *  米色(F5F5DC)
+ */
++ (UIColor *)beigeColor;
+
+/*
+ *  紫罗兰色(8A2BE2)
+ */
++ (UIColor *)blueVioletColor;
+
+/*
+ *  实木色(DEB887)
+ */
++ (UIColor *)burlyWoodColor;
+
 
 @end
 

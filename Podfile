@@ -13,5 +13,5 @@ target ‘Reading’ do
     pod 'XYYSegmentControl', '~> 1.3.2'
     pod 'SnapKit', '~> 0.20.0' ## 自动布局
     pod 'WDYLibrary/WDYCategory',:git => 'https://git.oschina.net/mzxj7255/WDYLibrary.git'
-    
+
 end

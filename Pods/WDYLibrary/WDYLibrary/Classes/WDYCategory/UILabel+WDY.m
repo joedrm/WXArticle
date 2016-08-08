@@ -7,10 +7,11 @@
 //
 
 #import "UILabel+WDY.h"
+#import "WDYCategoryHeader.h"
 
 @implementation UILabel (WDY)
 
--(void)setKeyWords:(NSArray *)keyWords font:(UIFont *)keyWordfont color:(UIColor *)keyWordColor {
+-(void)wdy_setKeyWords:(NSArray *)keyWords font:(UIFont *)keyWordfont color:(UIColor *)keyWordColor {
     
     if (keyWords == nil) {
         return;
@@ -52,5 +53,24 @@
     
 }
 
+- (CGFloat)wdy_calculateHeight
+{
+    return [self.text heightWithFont:self.font constrainedToWidth:self.wdy_width];
+}
 
+- (CGSize)wdy_calculateSize
+{
+    return [self.text sizeWithFont:self.font constrainedToWidth:self.wdy_width];
+}
+
+- (void)wdy_addHorizontalLineWithColor:(UIColor *)lineColor lineTextColor:(UIColor *)lineTextColor range:(NSRange)range
+{
+    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc]initWithString:self.text];
+    [attributedString addAttribute:NSStrikethroughStyleAttributeName value:[NSNumber numberWithInteger:NSUnderlineStyleSingle] range:range];
+    UIColor *textColor = nil;
+    lineTextColor == nil ? (textColor = self.textColor) : (textColor = lineTextColor);
+    [attributedString addAttribute:NSForegroundColorAttributeName value:textColor range:range];
+    [attributedString addAttribute:NSStrikethroughColorAttributeName value:lineColor range:range];
+    self.attributedText = attributedString;
+}
 @end

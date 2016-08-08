@@ -1,6 +1,6 @@
 {
   "name": "WDYLibrary",
-  "version": "0.7.2",
+  "version": "0.7.3",
   "summary": "私有仓库",
   "description": "项目私有仓库",
   "homepage": "http://git.oschina.net/mzxj7255/WDYLibrary",
@@ -13,7 +13,7 @@
   },
   "source": {
     "git": "https://git.oschina.net/mzxj7255/WDYLibrary.git",
-    "tag": "0.7.2"
+    "tag": "0.7.3"
   },
   "platforms": {
     "ios": "8.0"
@@ -62,6 +62,10 @@
           "3.8.0"
         ]
       }
+    },
+    {
+      "name": "WDYUtil",
+      "source_files": "WDYLibrary/Classes/WDYUtil/**/*"
     }
   ]
 }

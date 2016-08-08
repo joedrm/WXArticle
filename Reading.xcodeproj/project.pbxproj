@@ -15,6 +15,7 @@
 		16416C8E1D2513FA00C1778A /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16416C8D1D2513FA00C1778A /* RootViewController.swift */; };
 		16416C941D2514DB00C1778A /* WXHotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16416C911D2514DB00C1778A /* WXHotViewController.swift */; };
 		16416C961D25275C00C1778A /* WXHotItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16416C951D25275C00C1778A /* WXHotItem.swift */; };
+		168031651D58748F00E60B76 /* wxhot.plist in Resources */ = {isa = PBXBuildFile; fileRef = 168031641D58748F00E60B76 /* wxhot.plist */; };
 		16C7644E1D26A877005BC0EA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16C7644A1D26A877005BC0EA /* ContentView.swift */; };
 		16C7644F1D26A877005BC0EA /* ScrollPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16C7644B1D26A877005BC0EA /* ScrollPageView.swift */; };
 		16C764501D26A877005BC0EA /* ScrollSegmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16C7644C1D26A877005BC0EA /* ScrollSegmentView.swift */; };
@@ -65,6 +66,7 @@
 		16416C8D1D2513FA00C1778A /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		16416C911D2514DB00C1778A /* WXHotViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WXHotViewController.swift; sourceTree = "<group>"; };
 		16416C951D25275C00C1778A /* WXHotItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WXHotItem.swift; sourceTree = "<group>"; };
+		168031641D58748F00E60B76 /* wxhot.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = wxhot.plist; sourceTree = "<group>"; };
 		16C7644A1D26A877005BC0EA /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		16C7644B1D26A877005BC0EA /* ScrollPageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollPageView.swift; sourceTree = "<group>"; };
 		16C7644C1D26A877005BC0EA /* ScrollSegmentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollSegmentView.swift; sourceTree = "<group>"; };
@@ -260,8 +262,8 @@
 		16416C861D2513CF00C1778A /* Resouce */ = {
 			isa = PBXGroup;
 			children = (
+				168031631D58748F00E60B76 /* plist */,
 				16416C871D2513CF00C1778A /* images */,
-				16416C881D2513CF00C1778A /* plist */,
 			);
 			path = Resouce;
 			sourceTree = "<group>";
@@ -274,13 +276,6 @@
 				16EFC79C1D26583600D37FDB /* nav_back@3x.png */,
 			);
 			path = images;
-			sourceTree = "<group>";
-		};
-		16416C881D2513CF00C1778A /* plist */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = plist;
 			sourceTree = "<group>";
 		};
 		16416C891D2513CF00C1778A /* Section */ = {
@@ -333,6 +328,14 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		168031631D58748F00E60B76 /* plist */ = {
+			isa = PBXGroup;
+			children = (
+				168031641D58748F00E60B76 /* wxhot.plist */,
+			);
+			path = plist;
+			sourceTree = "<group>";
+		};
 		16C764491D26A877005BC0EA /* ScrollPageView */ = {
 			isa = PBXGroup;
 			children = (
@@ -379,12 +382,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 16416C721D250FF300C1778A /* Build configuration list for PBXNativeTarget "Reading" */;
 			buildPhases = (
-				A40BCE3D599C7C378C9083CB /* Check Pods Manifest.lock */,
+				A40BCE3D599C7C378C9083CB /* [CP] Check Pods Manifest.lock */,
 				16416C511D250FF300C1778A /* Sources */,
 				16416C521D250FF300C1778A /* Frameworks */,
 				16416C531D250FF300C1778A /* Resources */,
-				5803FD25DEA5ED842833AD72 /* Embed Pods Frameworks */,
-				2D0CB6119A71FDE3B72A2B0E /* Copy Pods Resources */,
+				5803FD25DEA5ED842833AD72 /* [CP] Embed Pods Frameworks */,
+				2D0CB6119A71FDE3B72A2B0E /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -464,6 +467,7 @@
 				16EFC79F1D26583600D37FDB /* nav_back@3x.png in Resources */,
 				16416C631D250FF300C1778A /* LaunchScreen.storyboard in Resources */,
 				16416C601D250FF300C1778A /* Assets.xcassets in Resources */,
+				168031651D58748F00E60B76 /* wxhot.plist in Resources */,
 				16416C5E1D250FF300C1778A /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -478,14 +482,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		2D0CB6119A71FDE3B72A2B0E /* Copy Pods Resources */ = {
+		2D0CB6119A71FDE3B72A2B0E /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -493,14 +497,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Reading/Pods-Reading-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		5803FD25DEA5ED842833AD72 /* Embed Pods Frameworks */ = {
+		5803FD25DEA5ED842833AD72 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -508,14 +512,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Reading/Pods-Reading-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		A40BCE3D599C7C378C9083CB /* Check Pods Manifest.lock */ = {
+		A40BCE3D599C7C378C9083CB /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;

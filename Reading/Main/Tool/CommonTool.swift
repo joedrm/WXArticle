@@ -32,4 +32,21 @@ class CommonTool: NSObject {
         return String(finalString)
     }
     
+    
+    static func savaData(param:[AnyObject]){
+        let array = param as NSArray
+        array.writeToFile(dataFilePath() as String, atomically: true);
+    }
+    
+    static func dataFilePath() -> String {
+        let paths = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory,NSSearchPathDomainMask.UserDomainMask, true)
+        let documentsDirectory = paths[0] as NSString
+        print("documentsDirectory = \(documentsDirectory)")
+        return documentsDirectory.stringByAppendingPathComponent("wxhot.plist") as String
+    }
+    
+    static func readData()-> [String]{
+        let array = NSArray(contentsOfFile: "wxhot.plist") as! [String]
+        return array as [String];
+    }
 }

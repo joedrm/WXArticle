@@ -7,7 +7,7 @@ PODS:
   - SDWebImage/Core (3.8.0)
   - SnapKit (0.20.0)
   - SwiftyJSON (2.3.2)
-  - WDYLibrary/WDYCategory (0.7.2):
+  - WDYLibrary/WDYCategory (0.7.3):
     - SDWebImage (= 3.8.0)
   - XYYSegmentControl (1.3.2)
 
@@ -26,7 +26,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   WDYLibrary:
-    :commit: fc63a20bba794416cc2d3c859112d9e4a33d50ac
+    :commit: 00bccbe3ee89fc1b8c1f19fbe4ede17d631c21c7
     :git: https://git.oschina.net/mzxj7255/WDYLibrary.git
 
 SPEC CHECKSUMS:
@@ -36,9 +36,9 @@ SPEC CHECKSUMS:
   SDWebImage: 7d9fe229266696de91eadf840c77ca15efd4bbd2
   SnapKit: 5fce3c1bbbf1fbd31de9aa92f33eb9fa03f15650
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
-  WDYLibrary: 5e4441346f87aa53a9f22b98adbd3ac39f48c9a4
+  WDYLibrary: 329fd0b49edca11c277434736c742e0416a467bf
   XYYSegmentControl: 1a12ccd2729bb10862b22cac4dcb3d01f7edc5be
 
-PODFILE CHECKSUM: be25f0d2c569cbcb1860337e899919647d7f75f3
+PODFILE CHECKSUM: a84ff0df4164171ce69ffc2e23e0264b92cccbc2
 
-COCOAPODS: 1.0.0.beta.4
+COCOAPODS: 1.0.1

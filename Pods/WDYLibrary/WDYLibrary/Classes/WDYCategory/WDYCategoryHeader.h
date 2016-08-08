@@ -9,7 +9,7 @@
 #ifndef WDYCategoryHeader_h
 #define WDYCategoryHeader_h
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 #import "UIView+SetRect.h"
 #import "UIColor+WDY.h"
 #import "UIImage+WDY.h"
@@ -26,5 +26,12 @@
 #import "UIImageView+WDY.h"
 #import "UIButton+MyFont.h"
 #import "UILabel+MyFont.h"
+#import "NSObject+Swizzling.h"
+#import "NSObject+AssociatedObject.h"
+#import "UIButton+Submitting.h"
+#import "UIControl+Block.h"
+#import "NSArray+WDY.h"
+#import "NSMutableArray+WDY.h"
+#import "UIFont+WDY.h"
 
 #endif /* WDYCategoryHeader_h */

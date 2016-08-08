@@ -7,13 +7,17 @@
 //
 
 #import "UIView+WDY.h"
-
+#import <objc/runtime.h>
 // Very helpful function
 
 float radiansForDegrees(int degrees) {
     return degrees * M_PI / 180;
 }
 
+static char kActionHandlerTapBlockKey;
+static char kActionHandlerTapGestureKey;
+static char kActionHandlerLongPressBlockKey;
+static char kActionHandlerLongPressGestureKey;
 
 @implementation UIView (WDY)
 
@@ -106,7 +110,7 @@ float radiansForDegrees(int degrees) {
 }
 
 #pragma mark - 截屏
--(UIImage*)imageByRenderingView
+-(UIImage*)wdy_screenshot
 {
     UIGraphicsBeginImageContextWithOptions(self.bounds.size, self.opaque, 0.0f);
     [self.layer renderInContext:UIGraphicsGetCurrentContext()];
@@ -114,6 +118,211 @@ float radiansForDegrees(int degrees) {
     UIGraphicsEndImageContext();
     return image;
 }
+
+
++ (instancetype)wdy_loadInstanceFromNib
+{
+    return [self wdy_loadInstanceFromNibWithName:NSStringFromClass([self class])];
+}
++ (instancetype)wdy_loadInstanceFromNibWithName:(NSString *)nibName
+{
+    return [self wdy_loadInstanceFromNibWithName:nibName owner:nil];
+}
++ (instancetype)wdy_loadInstanceFromNibWithName:(NSString *)nibName owner:(id)owner
+{
+    return [self wdy_loadInstanceFromNibWithName:nibName owner:nil bundle:[NSBundle mainBundle]];
+}
++ (instancetype)wdy_loadInstanceFromNibWithName:(NSString *)nibName owner:(id)owner bundle:(NSBundle *)bundle
+{
+    NSArray *nibViews = [bundle loadNibNamed:nibName owner:owner options:nil];
+    UIView *curMainView = nil;
+    for (id curObj in nibViews) {
+        if ([curObj isKindOfClass:[self class]]) {
+            curMainView = curObj;
+            break;
+        }
+    }
+    return curMainView;
+}
+
+#pragma mark- block gesture
+- (void)addTapActionWithBlock:(GestureActionBlock)block
+{
+    UITapGestureRecognizer *gesture = objc_getAssociatedObject(self, &kActionHandlerTapGestureKey);
+    if (!gesture)
+    {
+        gesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleActionForTapGesture:)];
+        [self addGestureRecognizer:gesture];
+        objc_setAssociatedObject(self, &kActionHandlerTapGestureKey, gesture, OBJC_ASSOCIATION_RETAIN);
+    }
+    objc_setAssociatedObject(self, &kActionHandlerTapBlockKey, block, OBJC_ASSOCIATION_COPY);
+}
+- (void)handleActionForTapGesture:(UITapGestureRecognizer*)gesture
+{
+    if (gesture.state == UIGestureRecognizerStateRecognized)
+    {
+        GestureActionBlock block = objc_getAssociatedObject(self, &kActionHandlerTapBlockKey);
+        if (block)
+        {
+            block(gesture);
+        }
+    }
+}
+- (void)addLongPressActionWithBlock:(GestureActionBlock)block
+{
+    UILongPressGestureRecognizer *gesture = objc_getAssociatedObject(self, &kActionHandlerLongPressGestureKey);
+    if (!gesture)
+    {
+        gesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleActionForLongPressGesture:)];
+        [self addGestureRecognizer:gesture];
+        objc_setAssociatedObject(self, &kActionHandlerLongPressGestureKey, gesture, OBJC_ASSOCIATION_RETAIN);
+    }
+    objc_setAssociatedObject(self, &kActionHandlerLongPressBlockKey, block, OBJC_ASSOCIATION_COPY);
+}
+- (void)handleActionForLongPressGesture:(UITapGestureRecognizer*)gesture
+{
+    if (gesture.state == UIGestureRecognizerStateRecognized)
+    {
+        GestureActionBlock block = objc_getAssociatedObject(self, &kActionHandlerLongPressBlockKey);
+        if (block)
+        {
+            block(gesture);
+        }
+    }
+}
+
+#pragma mark-  border
+#pragma mark complete border
+
+- (void)addOneRetinaPixelBorder {
+    double retinaPixelSize = 1./[UIScreen mainScreen].scale;
+    [self addOneRetinaPixelBorderWithColor:self.defaultBorderColor andRadius:retinaPixelSize];
+}
+
+- (void)addOneRetinaPixelBorderWithColor:(UIColor*)color andRadius:(CGFloat)radius{
+    double retinaPixelSize = 1./[UIScreen mainScreen].scale;
+    [self addBorderWithColor:color andWidth:retinaPixelSize andRadius:radius];
+}
+
+- (void)addBorderWithColor:(UIColor *)color andWidth:(float)lineWidth andRadius:(CGFloat)radius{
+    self.layer.borderWidth = lineWidth;
+    self.layer.borderColor = color.CGColor;
+    self.layer.cornerRadius = radius;
+    self.layer.masksToBounds = YES;
+}
+
+/**
+ *  添加边框
+ */
+
+static UIColor* _defaultBorderColor;
+
+- (void)setDefaultBorderColor:(UIColor *)defaultBorderColor {
+    _defaultBorderColor = defaultBorderColor;
+}
+
+- (UIColor *)defaultBorderColor {
+    if (!_defaultBorderColor) {
+        if ([self respondsToSelector:@selector(tintColor)]) {
+            return self.tintColor;
+        } else {
+            return [UIColor blueColor];
+        }
+    } else {
+        return _defaultBorderColor;
+    }
+}
+
+#pragma mark  single side border
+
+- (void)addOneRetinaPixelLineAtPosition:(enum JSBorderPosition)position {
+    [self addOneRetinaPixelLineWithColor:self.defaultBorderColor atPosition:position];
+}
+
+- (void)addOneRetinaPixelLineWithColor:(UIColor*)color atPosition:(enum JSBorderPosition)position {
+    
+    double retinaPixelSize = 1./[UIScreen mainScreen].scale;
+    [self addLineWithColor:color andWidth:retinaPixelSize atPosition:position];
+}
+
+- (void)addLineWithWidth:(float)lineWidth atPosition:(enum JSBorderPosition)position {
+    [self addLineWithColor:self.defaultBorderColor andWidth:lineWidth atPosition:position];
+}
+
+- (void)addLineWithColor:(UIColor*)color andWidth:(float)lineWidth atPosition:(enum JSBorderPosition)position {
+    
+    // min lineweight is one logical device pixel
+    double retinaPixelSize = 1./[UIScreen mainScreen].scale;
+    lineWidth = MAX(retinaPixelSize, lineWidth);
+    
+    CALayer *border = [CALayer layer];
+    switch (position) {
+        case JSBorderPositionTop:
+            border.frame = CGRectMake(0, 0, self.frame.size.width, lineWidth);
+            break;
+            
+        case JSBorderPositionBottom:
+            border.frame = CGRectMake(0, self.frame.size.height-lineWidth, self.frame.size.width, lineWidth);
+            break;
+            
+        case JSBorderPositionLeft:
+            border.frame = CGRectMake(0, 0, lineWidth, self.frame.size.height);
+            break;
+            
+        case JSBorderPositionRight:
+            border.frame = CGRectMake(self.frame.size.width-lineWidth, 0, lineWidth, self.frame.size.height);
+            break;
+    }
+    
+    border.backgroundColor = color.CGColor;
+    
+    [self removeBorderAtPosition:position];
+    [border setValue:@([self tagForPosition:position]) forKey:@"tag"];
+    [self.layer addSublayer:border];
+}
+
+
+- (int)tagForPosition:(enum JSBorderPosition)position {
+    
+    int tag = 32147582;
+    
+    switch (position) {
+        case JSBorderPositionTop:    return tag;
+        case JSBorderPositionBottom: return tag + 1;
+        case JSBorderPositionLeft:   return tag + 2;
+        case JSBorderPositionRight:  return tag + 3;
+    }
+    
+    NSAssert(NO, @"invalid position");
+    return 0;
+}
+
+- (void)removeBorderAtPosition:(enum JSBorderPosition)position {
+    
+    int tag = [self tagForPosition:position];
+    
+    __block CALayer *toRemove;
+    
+    [self.layer.sublayers enumerateObjectsUsingBlock:^(CALayer *layer, NSUInteger idx, BOOL *stop) {
+        if ([[layer valueForKey:@"tag"] intValue] == tag) {
+            *stop = YES;
+            toRemove = layer;
+        }
+    }];
+    
+    [toRemove removeFromSuperlayer];
+}
+
+- (void)removeAllBorders {
+    
+    [self removeBorderAtPosition:JSBorderPositionTop];
+    [self removeBorderAtPosition:JSBorderPositionBottom];
+    [self removeBorderAtPosition:JSBorderPositionLeft];
+    [self removeBorderAtPosition:JSBorderPositionRight];
+}
+
+
+
 
 #pragma mark - View的动画
 

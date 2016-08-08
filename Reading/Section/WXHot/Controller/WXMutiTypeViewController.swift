@@ -41,8 +41,8 @@ class WXMutiTypeViewController: UIViewController, UITableViewDataSource, UITable
         tableView?.registerNib(nib, forCellReuseIdentifier: WXHotReuseIdentifier)
         view.addSubview(tableView!)
         
-        tableView!.mj_header = MJRefreshNormalHeader(refreshingTarget: self, refreshingAction: #selector(WXHotViewController.loadNewData))
-        tableView!.mj_footer = MJRefreshAutoNormalFooter(refreshingTarget: self, refreshingAction: #selector(WXHotViewController.loadMoreData))
+        tableView!.mj_header = MJRefreshNormalHeader(refreshingTarget: self, refreshingAction: #selector(WXMutiTypeViewController.loadNewData))
+        tableView!.mj_footer = MJRefreshAutoNormalFooter(refreshingTarget: self, refreshingAction: #selector(WXMutiTypeViewController.loadMoreData))
         tableView?.mj_footer.automaticallyHidden = true
     }
 
@@ -67,9 +67,10 @@ class WXMutiTypeViewController: UIViewController, UITableViewDataSource, UITable
             "showapi_appid" :KYiYuanAppID,
             "showapi_sign":sortResultString.md5Str()]
         DataService.queryByCategroryID(paramsDict) { (success, result, error) in
-//            print("\(result)")
+            print("result = \(result)")
             if success{
                 let resultArr = (result! as [String: AnyObject])["showapi_res_body"]!["pagebean"]!!["contentlist"]!! as! [[String: AnyObject]]
+                CommonTool.savaData(resultArr);
                 let models = WXArticleItem.objectArrayWithKeyValuesArray(resultArr) as! [WXArticleItem]
                 self.hotNews = models
                 self.tableView?.reloadData()

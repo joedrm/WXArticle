@@ -285,6 +285,46 @@
         return [formatterFullDate stringFromDate:self];
     }
 }
+
+-(BOOL)isLaterThanOrEqual:(NSDate *)date{
+    NSDate *fromDate=[self formatDateByComponent:self];
+    NSDate *toDate=[self formatDateByComponent:date];
+    return !([fromDate compare:toDate]==NSOrderedAscending);
+}
+
+-(BOOL)isLaterThan:(NSDate *)date{
+    NSDate *fromDate=[self formatDateByComponent:self];
+    NSDate *toDate=[self formatDateByComponent:date];
+    return ([fromDate compare:toDate]==NSOrderedDescending);
+}
+
+-(BOOL)isEarlierOrEqual:(NSDate *)date{
+    NSDate *fromDate=[self formatDateByComponent:self];
+    NSDate *toDate=[self formatDateByComponent:date];
+    return !([fromDate compare:toDate]==NSOrderedDescending);
+}
+
+-(BOOL)isEarlierThan:(NSDate *)date{
+    NSDate *fromDate=[self formatDateByComponent:self];
+    NSDate *toDate=[self formatDateByComponent:date];
+    return ([fromDate compare:toDate]==NSOrderedAscending);
+}
+
+-(BOOL)isEqualTo:(NSDate *)date{
+    NSDate *fromDate=[self formatDateByComponent:self];
+    NSDate *toDate=[self formatDateByComponent:date];
+    return ([fromDate compare:toDate]==NSOrderedSame);
+}
+
+#pragma mark - private
+
+-(NSDate *)formatDateByComponent:(NSDate *)date{
+    NSCalendar *cal = [NSCalendar currentCalendar];
+    NSDateComponents *components = [cal components:(NSCalendarUnitEra | NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay) fromDate:date];
+    return [cal dateFromComponents:components];
+}
+
+
 @end
 
 //NS_ASSUME_NONNULL_END

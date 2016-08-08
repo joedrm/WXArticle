@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "WDYCategoryHeader.h"
 #import <AssetsLibrary/AssetsLibrary.h>
 
 static const void *CompleteBlockKey = &CompleteBlockKey;
@@ -79,6 +80,7 @@ typedef NS_ENUM(NSInteger, ImageWaterDirect) {
  */
 - (UIImage*)circleImage;
 + (UIImage*)circleImageNamed:(NSString *)name;
+- (UIImage*)imageAddCornerWithRadius:(CGFloat)radius andSize:(CGSize)size;
 
 // ------ 返回一张拉伸的图片
 + (UIImage *)resizableImageWithName:(NSString *)imageName;

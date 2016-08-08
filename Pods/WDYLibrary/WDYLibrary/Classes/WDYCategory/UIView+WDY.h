@@ -8,6 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
+enum JSBorderPosition {
+    JSBorderPositionTop,
+    JSBorderPositionBottom,
+    JSBorderPositionLeft,
+    JSBorderPositionRight
+};
+
+typedef void (^GestureActionBlock)(UIGestureRecognizer *gestureRecoginzer);
+
 float radiansForDegrees(int degrees);
 
 @interface UIView (WDY)
@@ -33,8 +42,47 @@ float radiansForDegrees(int degrees);
 -(void)swapDepthsWithView:(UIView*)swapView;
 
 // 截屏
--(UIImage*)imageByRenderingView;
+-(UIImage*)wdy_screenshot;
 
+// 从nib中加载View
++ (instancetype)wdy_loadInstanceFromNib;
++ (instancetype)wdy_loadInstanceFromNibWithName:(NSString *)nibName;
++ (instancetype)wdy_loadInstanceFromNibWithName:(NSString *)nibName owner:(nullable id)owner;
++ (instancetype)wdy_loadInstanceFromNibWithName:(NSString *)nibName owner:(nullable id)owner bundle:(NSBundle *)bundle;
+
+
+#pragma mark- block gesture
+
+- (void)addTapActionWithBlock:(GestureActionBlock)block;
+- (void)addLongPressActionWithBlock:(GestureActionBlock)block;
+
+
+#pragma mark- 边框
+/**
+ *  添加边框:四边
+ */
+- (void)addOneRetinaPixelBorder;
+- (void)addOneRetinaPixelBorderWithColor:(UIColor*)color andRadius:(CGFloat)radius;
+- (void)addBorderWithColor:(UIColor *)color andWidth:(float)lineWidth andRadius:(CGFloat)radius;
+/**
+ *  添加1px边框：一边
+ *
+ *  @param position 需要添加边框的一边
+ */
+- (void)addOneRetinaPixelLineAtPosition:(enum JSBorderPosition)position;
+- (void)addOneRetinaPixelLineWithColor:(UIColor*)color atPosition:(enum JSBorderPosition)position;
+/**
+ *  添加边框：一边
+ *
+ *  @param position 需要添加边框的一边
+ */
+- (void)addLineWithWidth:(float)lineWidth atPosition:(enum JSBorderPosition)position;
+- (void)addLineWithColor:(UIColor*)color andWidth:(float)lineWidth atPosition:(enum JSBorderPosition)position;
+/**
+ *  移除边框
+ */
+- (void)removeBorderAtPosition:(enum JSBorderPosition)position;
+- (void)removeAllBorders;
 
 #pragma mark - View动画
 

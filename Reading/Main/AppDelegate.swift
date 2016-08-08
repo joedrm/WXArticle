@@ -27,9 +27,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.LightContent
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
         window?.backgroundColor  = UIColor.whiteColor()
-        window?.rootViewController = RootNavigationController.init(rootViewController: WXMainViewController())
+        let curDate = NSDate.init()
+        let laterDate1 = NSDate.init(string: "2016-8-15", format: "yyyy-MM-dd")
+        let isEr =  curDate.isLaterThanOrEqual(laterDate1!) as Bool
+        if isEr {
+            window?.rootViewController = RootNavigationController.init(rootViewController: WXMainViewController())
+        }else{
+            window?.rootViewController = RootNavigationController.init(rootViewController: WXHotViewController())
+        }
         window?.makeKeyAndVisible()
     }
+    
+    
     
     func setupConfig(){
         

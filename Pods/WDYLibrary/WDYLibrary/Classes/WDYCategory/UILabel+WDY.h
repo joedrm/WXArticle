@@ -17,8 +17,30 @@
  *  @param keyWordfont  字体
  *  @param keyWordColor 颜色
  */
--(void)setKeyWords:(NSArray *)keyWords
+-(void)wdy_setKeyWords:(NSArray *)keyWords
               font:(UIFont *)keyWordfont
              color:(UIColor *)keyWordColor;
 
+/**
+ *  根据文本计算Label的高度
+ *
+ *  @return 文本的高度
+ */
+- (CGFloat)wdy_calculateHeight;
+
+/**
+ *  根据文本计算Label的尺寸
+ *
+ *  @return 文本的尺寸
+ */
+- (CGSize)wdy_calculateSize;
+
+/**
+ *  为UILabel添加中划线
+ *
+ *  @param lineColor     划线颜色
+ *  @param lineTextColor 划线文本颜色
+ *  @param range         划线范围
+ */
+- (void)wdy_addHorizontalLineWithColor:(UIColor *)lineColor lineTextColor:(UIColor *)lineTextColor range:(NSRange)range;
 @end

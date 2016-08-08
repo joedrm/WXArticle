@@ -66,6 +66,13 @@ NS_ASSUME_NONNULL_BEGIN
 - (BOOL) isSameMonthAsDate: (NSDate *) aDate;
 - (BOOL) isSameYearAsDate: (NSDate *) aDate;
 
+-(BOOL)isLaterThanOrEqual:(NSDate *)date;
+-(BOOL)isLaterThan:(NSDate *)date;
+-(BOOL)isEarlierOrEqual:(NSDate *)date;
+-(BOOL)isEarlierThan:(NSDate *)date;
+-(BOOL)isEqualTo:(NSDate *)date;
+-(NSDate *)formatDateByComponent:(NSDate *)date;
+
 // 是否是周末
 - (BOOL) isTypicallyWorkday;
 - (BOOL) isTypicallyWeekend;

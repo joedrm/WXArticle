@@ -382,6 +382,47 @@ static NSMutableDictionary *colorNameCache = nil;
     return color;
 }
 
++ (UIColor *)smokeWhiteColor
+{
+    return [self colorWithHexString:@"F5F5F5"];
+}
+
++ (UIColor *)yellowGreenColor
+{
+    return [self colorWithHexString:@"9ACD32"];
+}
+
++ (UIColor *)aliceBlueColor
+{
+    return [self colorWithHexString:@"F0F8FF"];
+}
+
++ (UIColor *)antiqueWhiteColor
+{
+    return [self colorWithHexString:@"FAEBD7"];
+}
+
++ (UIColor *)aquaMarineColor
+{
+    return [self colorWithHexString:@"7FFFD4"];
+}
+
++ (UIColor *)beigeColor
+{
+    return [self colorWithHexString:@"F5F5DC"];
+}
+
++ (UIColor *)blueVioletColor
+{
+    return [self colorWithHexString:@"8A2BE2"];
+}
+
++ (UIColor *)burlyWoodColor
+{
+    return [self colorWithHexString:@"DEB887"];
+}
+
+
 #pragma mark UIColor_Expanded initialization
 
 + (void)load {

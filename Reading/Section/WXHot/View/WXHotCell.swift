@@ -21,21 +21,24 @@ class WXHotCell: UITableViewCell {
         titleLabelView.font = UIFont.systemFontOfSize(14)
         picImageView.layer.cornerRadius = 3.0
         picImageView.clipsToBounds = true
+        timeLabel.hidden = true
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
     
-    var hotItem : WXHotItem?
+    var hotItem : WXArticleItem?
         {
         didSet{
             if let art = hotItem {
-                let picUrl = NSURL.init(string: art.picUrl!, relativeToURL: nil)
+                let picUrl = NSURL.init(string: art.contentImg!, relativeToURL: nil)
                 picImageView.sd_setImageWithURL(picUrl, fadeAnimation: true)
                 titleLabelView.text = art.title!
-                contentLabelView.text = "来自："+art.des!
-                timeLabel.text = art.ctime!
+//                contentLabelView.text = "来自:"+art.userName!
+                
+                let mdate = NSDate.init(string: art.date!, format:"yyyy-MM-dd HH:mm:ss")
+                contentLabelView.text = mdate!.stringWithTimelineDate()
             }
         }
     }

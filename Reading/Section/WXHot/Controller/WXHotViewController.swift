@@ -16,7 +16,7 @@ private let WXHotReuseIdentifier = "WXHotReuseIdentifier"
 
 class WXHotViewController: RootViewController, UITableViewDataSource, UITableViewDelegate {
     
-    var hotNews: [WXHotItem]?
+    var hotNews: [WXArticleItem]?
     var pageIndex: Int  = 1
     var tableView: UITableView?
     
@@ -33,7 +33,6 @@ class WXHotViewController: RootViewController, UITableViewDataSource, UITableVie
         
         tableView!.mj_header = MJRefreshNormalHeader(refreshingTarget: self, refreshingAction: #selector(WXHotViewController.loadNewData))
         tableView!.mj_header.beginRefreshing()
-        tableView!.mj_footer = MJRefreshAutoNormalFooter(refreshingTarget: self, refreshingAction: #selector(WXHotViewController.loadMoreData))
     }
     
     
@@ -41,63 +40,11 @@ class WXHotViewController: RootViewController, UITableViewDataSource, UITableVie
      下拉刷新
      */
     func loadNewData(){
-        pageIndex = 1
-        var paramsDict : Dictionary<String, AnyObject>
-        paramsDict = [
-            "num":"10",
-            "page"          :pageIndex,
-            "showapi_appid" :KYiYuanAppID
-        ];
-        
-        let sortResultString = CommonTool.sortWithParams(paramsDict, secretStr: KYiYuanAppSign)
-        let dict = ["num":"10",
-                    "page"          :pageIndex,
-                    "showapi_appid" :KYiYuanAppID,
-                    "showapi_sign":sortResultString.md5Str()]
-//        NetworkTools.sharedInstance.get("", parameters: dict as? [String : AnyObject]) { (success, result, error) in
-//            if success{
-//                print("\((result! as [String: AnyObject])["showapi_res_body"]!["newslist"]!!)")
-//                let resultArr = (result! as [String: AnyObject])["showapi_res_body"]!["newslist"]!! as! [[String: AnyObject]]
-//                let models = WXHotItem.objectArrayWithKeyValuesArray(resultArr) as! [WXHotItem]
-//                self.hotNews =  models
-//                self.tableView?.reloadData()
-//                self.tableView?.mj_header.endRefreshing()
-//            }else{
-//                self.tableView?.mj_header.endRefreshing()
-//            }
-//        }
+        let aa = WXArticleItem.objectArrayWithFilename("wxhot.plist")
+        hotNews = aa as? [WXArticleItem];
+        tableView?.reloadData()
+        tableView?.mj_header.endRefreshing();
     }
-    
-    /**
-     加载更多
-     */
-    func loadMoreData()  {
-        pageIndex += 1
-        var paramsDict : Dictionary<String, AnyObject>
-        paramsDict = [
-            "num":"10",
-            "page"          :pageIndex,
-            "showapi_appid" :KYiYuanAppID
-        ];
-        
-        let sortResultString = CommonTool.sortWithParams(paramsDict, secretStr: KYiYuanAppSign)
-        let dict = ["num":"10",
-                    "page"          :pageIndex,
-                    "showapi_appid" :KYiYuanAppID,
-                    "showapi_sign":sortResultString.md5Str()]
-//        NetworkTools.sharedInstance.get("", parameters: dict as? [String : AnyObject]) { (success, result, error) in
-//            if success{
-//                let resultArr = (result! as [String: AnyObject])["showapi_res_body"]!["newslist"]!! as! [[String: AnyObject]]
-//                let models = WXHotItem.objectArrayWithKeyValuesArray(resultArr) as! [WXHotItem]
-//                self.hotNews =  self.hotNews! + models
-//                self.tableView?.reloadData()
-//                self.tableView?.mj_footer.endRefreshing()
-//            }else{
-//                self.tableView?.mj_footer.endRefreshing()
-//            }
-//        }
-    }
-    
     
 }
 
@@ -110,7 +57,7 @@ extension WXHotViewController   {
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let hotItem = hotNews![indexPath.row] as WXHotItem
+        let hotItem = hotNews![indexPath.row] as WXArticleItem
         let cell = tableView.dequeueReusableCellWithIdentifier(WXHotReuseIdentifier)! as! WXHotCell
         cell.selectionStyle = .None
         cell.hotItem = hotItem
@@ -121,12 +68,12 @@ extension WXHotViewController   {
         return 100
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let hotItem = hotNews![indexPath.row] as WXHotItem
-        let detailVC = WXHotDetailViewController()
-        detailVC.hotItem = hotItem
-        navigationController?.pushViewController(detailVC, animated: true)
-    }
+//    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+//        let hotItem = hotNews![indexPath.row] as WXArticleItem
+//        let detailVC = WXHotDetailViewController()
+//        detailVC.hotItem = hotItem
+//        navigationController?.pushViewController(detailVC, animated: true)
+//    }
 }
 
 
