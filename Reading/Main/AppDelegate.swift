@@ -28,13 +28,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
         window?.backgroundColor  = UIColor.whiteColor()
         let curDate = NSDate.init()
-        let laterDate1 = NSDate.init(string: "2016-8-15", format: "yyyy-MM-dd")
+        let laterDate1 = NSDate.init(string: "2016-8-16", format: "yyyy-MM-dd")
         let isEr =  curDate.isLaterThanOrEqual(laterDate1!) as Bool
-        if isEr {
+//        if isEr {
             window?.rootViewController = RootNavigationController.init(rootViewController: WXMainViewController())
-        }else{
-            window?.rootViewController = RootNavigationController.init(rootViewController: WXHotViewController())
-        }
+//        }else{
+//            window?.rootViewController = RootNavigationController.init(rootViewController: WXHotViewController())
+//        }
         window?.makeKeyAndVisible()
     }
     
